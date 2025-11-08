@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Guia do Homem de Honra — Como Usar o Perfume de Maneira Correta</title>
+  <meta name="description" content="Aprenda a usar perfume com presença, respeito e elegância. Ebook exclusivo por apenas R$4,90." />
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --card:#111;
+      --muted:#bfbfbf;
+      --gold:#e0b64f;
+      --accent:#caa84a;
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Montserrat',sans-serif;
+      background:linear-gradient(180deg,rgba(8,8,8,1) 0%,rgba(12,12,12,1) 60%);
+      color:#fff;
+      display:flex;justify-content:center;padding:30px 18px;
+    }
+    .wrap{width:100%;max-width:var(--maxw);}
+    h1{font-family:'Playfair Display',serif;font-size:2.2rem;line-height:1.1;color:#fff;margin:0 0 10px;}
+    .eyebrow{color:var(--gold);font-weight:700;letter-spacing:1px;margin-bottom:10px;}
+    p{color:var(--muted);}
+    .price{color:var(--gold);font-weight:700;font-size:1.1rem;margin-right:10px;}
+    .btn{background:var(--gold);color:#0b0b0b;padding:12px 18px;border:none;border-radius:10px;font-weight:700;cursor:pointer;}
+    .btn:hover{transform:translateY(-3px);}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:30px;align-items:center;}
+    @media(max-width:920px){.hero{grid-template-columns:1fr;text-align:center;}}
+    .hero-right img{width:100%;border-radius:10px;}
+    .pix-modal{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;visibility:hidden;opacity:0;transition:0.2s;}
+    .pix-modal.show{visibility:visible;opacity:1;}
+    .pix-box{background:#111;padding:25px;border-radius:12px;max-width:500px;width:100%;text-align:center;}
+    .pix-qr img{width:200px;height:200px;border-radius:8px;background:#fff;padding:10px;}
+    .pix-code{background:#222;padding:10px;border-radius:8px;margin-top:10px;word-break:break-all;font-size:0.85rem;color:var(--muted);}
+    .copy-btn{margin-top:10px;background:transparent;border:1px solid var(--gold);color:var(--gold);padding:8px 12px;border-radius:8px;cursor:pointer;}
+    .whatsapp{display:inline-block;margin-top:12px;background:#25D366;color:#000;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700;}
+    footer{margin-top:30px;text-align:center;color:var(--muted);font-size:0.85rem;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="hero-left">
+        <div class="eyebrow">EBOOK • GUIA PRÁTICO</div>
+        <h1>Como Usar o Perfume de Maneira Correta</h1>
+        <p>Descubra como aplicar perfume da forma certa e transmitir presença, respeito e elegância — como um verdadeiro homem de honra.</p>
+        <p><span class="price">R$ 4,90</span> Pagamento via PIX — envio manual do comprovante pelo WhatsApp.</p>
+        <button class="btn" id="openPix">Garantir acesso exclusivo ao eBook</button>
+      </div>
+      <div class="hero-right">
+        <img src="Capa.png" alt="Capa do ebook Como Usar o Perfume de Maneira Correta">
+      </div>
+    </section>
+
+    <footer>© 2025 Kauã Mariano • Guia do Homem de Honra</footer>
+  </div>
+
+  <!-- MODAL PIX -->
+  <div class="pix-modal" id="pixModal">
+    <div class="pix-box">
+      <h3 style="color:var(--gold)">Pague via PIX — R$ 4,90</h3>
+      <p style="color:var(--muted)">Escaneie o QR Code ou copie o código abaixo. Depois envie o comprovante via WhatsApp para receber o eBook.</p>
+
+      <div class="pix-qr">
+        <img src="https://quickchart.io/qr?text=00020126580014br.gov.bcb.pix01366a8c4377-a947-46d9-9b8d-bf4d7f5c3b9552040000530398654044.905802BR5925KAUA_MARIANO_COSTA_TAVARE6015Sao_Luis_de_Mon610976050-18862290525HYCP24795049176256108447163045A2E&size=300" alt="QR Code PIX">
+      </div>
+
+      <div class="pix-code" id="pixCode">
+        00020126580014br.gov.bcb.pix01366a8c4377-a947-46d9-9b8d-bf4d7f5c3b9552040000530398654044.905802BR5925KAUA_MARIANO_COSTA_TAVARE6015Sao_Luis_de_Mon610976050-18862290525HYCP24795049176256108447163045A2E
+      </div>
+
+      <button class="copy-btn" id="copyPixBtn">Copiar código PIX</button>
+      <br>
+      <a class="whatsapp" href="https://wa.me/556484564405?text=Olá%2C+acabei+de+realizar+o+pagamento+do+eBook+%22Como+Usar+o+Perfume+de+Maneira+Correta%22.+Segue+meu+comprovante%3A" target="_blank">📲 Enviar comprovante</a>
+      <br>
+      <button class="copy-btn" id="closePix">Fechar</button>
+    </div>
+  </div>
+
+  <script>
+    const openPix = document.getElementById('openPix');
+    const closePix = document.getElementById('closePix');
+    const pixModal = document.getElementById('pixModal');
+    const copyPixBtn = document.getElementById('copyPixBtn');
+    const pixCode = document.getElementById('pixCode').innerText.trim();
+
+    openPix.addEventListener('click', () => pixModal.classList.add('show'));
+    closePix.addEventListener('click', () => pixModal.classList.remove('show'));
+    pixModal.addEventListener('click', e => { if (e.target === pixModal) pixModal.classList.remove('show'); });
+
+    copyPixBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(pixCode);
+        copyPixBtn.innerText = '✅ Copiado!';
+        setTimeout(() => copyPixBtn.innerText = 'Copiar código PIX', 2000);
+      } catch {
+        alert('Não foi possível copiar automaticamente. Copie manualmente.');
+      }
+    });
+  </script>
+</body>
+</html>
